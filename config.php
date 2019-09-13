@@ -6,7 +6,7 @@ return array(
   'admin_email' => 'admin@e.mail',
   'site_url' => 'http://localhost/crownfanding',
   'db' => array(
-    'name' => 'phonebook2016',
+    'name' => 'db',
     'login' => 'root',
     'password' => '',
   ),

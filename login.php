@@ -3,7 +3,7 @@
   
   if (isset($_POST['login'],$_POST['password']))
   {   
-    $q='SELECT * FROM Admin WHERE '.
+    $q='SELECT * FROM user WHERE '.
       '(login=\''.addslashes($_POST['login']).'\') AND '.
       '(password=\''.getHash($_POST['password']).'\')';
     $r=mysqli_query($link,$q);

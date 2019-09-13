@@ -5,21 +5,16 @@
     
   $Query=
     'SELECT 
-      Subscriber.Id AS Id,
-      CONCAT(Position.Title," ",Person.FullName) AS "Сотрудник",
-      CONCAT(Housing.Abbreviation," ",Cabinet.Title) AS "Кабинет",
-      Department.Title AS "Подразделение",
-      Phone AS "Телефон",
-      InterofficePhone AS "Вн.тел.",
-      Email AS "e-mail"
-    FROM Person,Position,Employee,Housing,Cabinet,Department,Subscriber 
-    WHERE 
-      Employee.Id_Position=Position.Id AND 
-      Employee.Id_Person=Person.Id AND 
-      Subscriber.Id_Employee=Employee.Id AND
-      Cabinet.Id_Housing=Housing.Id AND 
-      Subscriber.Id_Cabinet=Cabinet.Id AND
-      Subscriber.Id_Department=Department.Id';
+      project.id_project AS Id,
+      project.title AS "Имя",
+      project.date AS "Дата создания",
+      project.description AS "Описание проекта",
+      project.period AS "Длительность кампании",
+      project.requestFunds "Требуемая сумма",
+      user.name AS "Организатор кампании"
+    FROM project, user
+    WHERE
+      project.id_user = user.id_user';
   
   $Query=getModificatedForSearchingQuery($Query);
     Pagination($Query,$Navigation,5);
@@ -32,9 +27,7 @@
        
   if (isAdmin())
   {
-    $f['Action']='add_subscriber.php';
-    $f['SubmitTitle']='Добавить';
-    $param['content'].=getSubscriberForm($f);   
+    //  
   }  
      
   template($param);
