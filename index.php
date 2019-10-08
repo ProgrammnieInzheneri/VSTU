@@ -1,40 +1,1 @@
-<?php
-  require_once 'bootstrap.php';
-  
-  $param['title']='Crownfanding))0';
-    
-  $Query=
-    'SELECT 
-      Subscriber.Id AS Id,
-      CONCAT(Position.Title," ",Person.FullName) AS "Сотрудник",
-      CONCAT(Housing.Abbreviation," ",Cabinet.Title) AS "Кабинет",
-      Department.Title AS "Подразделение",
-      Phone AS "Телефон",
-      InterofficePhone AS "Вн.тел.",
-      Email AS "e-mail"
-    FROM Person,Position,Employee,Housing,Cabinet,Department,Subscriber 
-    WHERE 
-      Employee.Id_Position=Position.Id AND 
-      Employee.Id_Person=Person.Id AND 
-      Subscriber.Id_Employee=Employee.Id AND
-      Cabinet.Id_Housing=Housing.Id AND 
-      Subscriber.Id_Cabinet=Cabinet.Id AND
-      Subscriber.Id_Department=Department.Id';
-  
-  $Query=getModificatedForSearchingQuery($Query);
-    Pagination($Query,$Navigation,5);
-  $p['title']='Абоненты';
-  $p['editHref']='edit_subscriber.php';
-  $p['deleteHref']='delete_subscriber.php';
-  $p['searchForm']=getSubscriberSearchForm();
-   $p['Navigation']=$Navigation;
-  $param['content']=getDBTableAsHTML($Query,$p);
-       
-  if (isAdmin())
-  {
-    $f['Action']='add_subscriber.php';
-    $f['SubmitTitle']='Добавить';
-    $param['content'].=getSubscriberForm($f);   
-  }  
-     
-  template($param);
+<?phprequire_once 'bootstrap.php';$param['title']=$config['site_title'];    $Query=    'SELECT        projects.id,        projects.name AS "Название",        projects.description AS "Описание",        projects.requestedFunds AS "Требуется средств",        projects.period AS "Период кампании" FROM projects';$Query=getModificatedForSearchingQuery($Query);Pagination($Query,$Navigation,10);$p['title']='Проекты';$p['buttons'] = array(    array('Редактировать', 'btn btn-success', 'edit_project.php?id='),    array('Удалить', 'btn btn-danger', 'delete_project.php?id='));$p['Navigation']=$Navigation;//$p['searchForm']=getSearchForm(array('subjects_name'));$param['content']=getDBTableAsHTML($Query,$p);if (isAdmin()){    $formParams['Action']='add_project.php';    $formParams['SubmitTitle']='Добавить';    $fieldParams = array(        "name" => array(            "Название" => null        ),        "description" => array(            "Описание" => null        ),        "requestedFunds" => array(            "Требуется средств" => null        ),        "period" => array(            "Период кампании" => null        )    );    $param['content'].=getForm($formParams, $fieldParams);}template($param);

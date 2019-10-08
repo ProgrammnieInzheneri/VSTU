@@ -4,9 +4,10 @@ return array(
   'app_mode' => 'development',  
   // 'app_mode' => 'production',
   'admin_email' => 'admin@e.mail',
-  'site_url' => 'http://localhost/crownfanding',
+  'site_url' => 'http://localhost/VSTU/',
+  'site_title' => 'Crownfanding',
   'db' => array(
-    'name' => 'phonebook2016',
+    'name' => 'crownfanding',
     'login' => 'root',
     'password' => '',
   ),
