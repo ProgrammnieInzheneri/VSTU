@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
--- https://www.phpmyadmin.net/
+-- version 4.4.15.7
+-- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1
--- Время создания: Окт 15 2019 г., 17:55
--- Версия сервера: 10.1.40-MariaDB
--- Версия PHP: 7.3.5
+-- Host: 127.0.0.1
+-- Generation Time: Nov 14, 2019 at 06:45 PM
+-- Server version: 5.6.37
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,24 +17,24 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `crownfanding`
+-- Database: `crownfanding`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `admin`
+-- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
+CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(11) NOT NULL,
   `login` varchar(64) NOT NULL,
   `password` varchar(128) NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `login`, `password`, `name`) VALUES
@@ -45,55 +43,64 @@ INSERT INTO `admin` (`id`, `login`, `password`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `projects`
+-- Table structure for table `projects`
 --
 
-CREATE TABLE `projects` (
+CREATE TABLE IF NOT EXISTS `projects` (
   `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL DEFAULT '0',
   `name` varchar(256) NOT NULL,
   `description` text NOT NULL,
   `requestedFunds` float NOT NULL,
   `currentFunds` float NOT NULL,
   `tStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `period` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `projects`
+-- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `name`, `description`, `requestedFunds`, `currentFunds`, `tStamp`, `period`) VALUES
-(2, 'Дипломная работа', 'Требуется собрать средства на заказ дипломной работы', 1000000, 0, '2019-10-15 14:27:50', 10);
+INSERT INTO `projects` (`id`, `userId`, `name`, `description`, `requestedFunds`, `currentFunds`, `tStamp`, `period`) VALUES
+(2, 0, 'Дипломная работа', 'Требуется собрать средства на заказ дипломной работы Требуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работы', 1000000, 0, '2019-10-15 14:27:50', 999),
+(3, 4, 'Вфцвфв фцвфвцвфцфц', 'Требуется собрать средства на заказ дипломной работы Требуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работы Требуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работы Требуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работы Требуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работыТребуется собрать средства на заказ дипломной работы', 100000, 0, '2019-11-14 18:03:19', -1),
+(4, 4, 'awdawdwawda', 'awdawdwada', 0, 0, '2019-11-14 18:26:29', 0),
+(5, 5, 'wdadawd', 'awdwada', 2112, 0, '2019-11-14 18:32:18', 12),
+(6, 5, 'lkjlkjlkjkl', 'efreferf', 64565, 0, '2019-11-14 18:32:57', 56);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `updates`
+-- Table structure for table `updates`
 --
 
-CREATE TABLE `updates` (
+CREATE TABLE IF NOT EXISTS `updates` (
   `id` int(11) NOT NULL,
   `tableName` varchar(128) NOT NULL,
   `operation` varchar(128) NOT NULL,
   `rowId` int(11) NOT NULL,
   `tStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `updates`
+-- Dumping data for table `updates`
 --
 
 INSERT INTO `updates` (`id`, `tableName`, `operation`, `rowId`, `tStamp`) VALUES
 (55, 'projects', 'delete', 1, '2019-10-08 06:55:30'),
-(56, 'projects', 'add', 2, '2019-10-08 06:55:40');
+(57, 'projects', 'edit', 2, '2019-11-14 13:38:10'),
+(58, 'projects', 'add', 3, '2019-11-14 18:03:19'),
+(59, 'projects', 'add', 4, '2019-11-14 18:26:29'),
+(60, 'projects', 'add', 5, '2019-11-14 18:32:18'),
+(61, 'projects', 'add', 6, '2019-11-14 18:32:57');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
   `login` varchar(128) NOT NULL,
@@ -101,73 +108,70 @@ CREATE TABLE `users` (
   `email` varchar(256) NOT NULL,
   `phone` bigint(20) NOT NULL,
   `adress` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `login`, `password`, `email`, `phone`, `adress`) VALUES
 (2, 'Антон Карпушко', 'Habrabro', 'b895a3a12c9ae30234ecfd4bec0347a30640b9e23195a6f5b7c4edab46a31be5', 'habrabro@gmail.com', 89054343348, 'г. Волгоград, ул. Аллея Героев, 4, 88'),
-(3, 'awdawd', 'awd', 'bc1a9378afb03fbcb3cc53d851b16abc0d996fc6e88c04aaaafb0a662cf3fd08', 'habrabro@gmail.com', 0, 'awd');
+(3, 'awdawd', 'awd', 'bc1a9378afb03fbcb3cc53d851b16abc0d996fc6e88c04aaaafb0a662cf3fd08', 'habrabro@gmail.com', 0, 'awd'),
+(4, 'Ненавижу блять Андрея Кузнецова', 'hate', 'ca05ab5a595ca0b36ea5c403bfc6779e33a8f6be8f8376294d7d71436a987d5b', 'fuckyou@gmail.com', 0, ''),
+(5, 'Антон Карпушко', 'admin', '71bbd5ec794791be9df2d33b39bb33f6ddbfa985f3ea31f6b0f27f1e622f5d20', 'habrabro@gmail.com', 89053993134, 'г. Волгоград, ул. Аллея Героев, 4, 88');
 
 --
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `projects`
+-- Indexes for table `projects`
 --
 ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `updates`
+-- Indexes for table `updates`
 --
 ALTER TABLE `updates`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблицы `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT для таблицы `projects`
+-- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT для таблицы `updates`
+-- AUTO_INCREMENT for table `updates`
 --
 ALTER TABLE `updates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=62;
 --
--- AUTO_INCREMENT для таблицы `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

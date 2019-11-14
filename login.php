@@ -8,7 +8,7 @@ if (isAdmin())
 else
 {
     $c =
-        '<div class="container">
+        '<form class="container" method="POST">
 			<div class="row justify-content-center">
 			<div class="col-3">
 			<h4 class="text-center">Вход</h4>
@@ -17,7 +17,7 @@ else
             <input class="form-group form-control btn-info" type="submit" value="Зайдитэ"/>
         </div>
 		</div>
-		</div>';
+		</form>';
     $param['title'] = 'Login | '.$config['site_title'];
     $param['content'] = $c;
     template($param);
