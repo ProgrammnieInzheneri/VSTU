@@ -9,6 +9,6 @@ return array(
   'db' => array(
     'name' => 'crownfanding',
     'login' => 'root',
-    'password' => '',
+    'password' => 'mysql',
   ),
 );
