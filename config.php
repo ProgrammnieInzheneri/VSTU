@@ -1,7 +1,7 @@
 <?php
 
 return array(
-  'app_mode' => 'development',  
+  'app_mode' => 'development',
   // 'app_mode' => 'production',
   'admin_email' => 'admin@e.mail',
   'site_url' => 'http://localhost/VSTU/',
@@ -9,6 +9,6 @@ return array(
   'db' => array(
     'name' => 'crownfanding',
     'login' => 'root',
-    'password' => 'mysql',
+    'password' => '',
   ),
 );

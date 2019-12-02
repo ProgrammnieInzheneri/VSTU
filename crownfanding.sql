@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.7
--- http://www.phpmyadmin.net
+-- version 4.9.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2019 at 06:45 PM
--- Server version: 5.6.37
--- PHP Version: 5.6.31
+-- Generation Time: Dec 01, 2019 at 05:52 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -26,12 +28,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `login` varchar(64) NOT NULL,
   `password` varchar(128) NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admin`
@@ -46,16 +48,16 @@ INSERT INTO `admin` (`id`, `login`, `password`, `name`) VALUES
 -- Table structure for table `projects`
 --
 
-CREATE TABLE IF NOT EXISTS `projects` (
+CREATE TABLE `projects` (
   `id` int(11) NOT NULL,
-  `userId` int(11) NOT NULL DEFAULT '0',
+  `userId` int(11) NOT NULL DEFAULT 0,
   `name` varchar(256) NOT NULL,
   `description` text NOT NULL,
   `requestedFunds` float NOT NULL,
   `currentFunds` float NOT NULL,
-  `tStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tStamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `period` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `projects`
@@ -74,13 +76,13 @@ INSERT INTO `projects` (`id`, `userId`, `name`, `description`, `requestedFunds`,
 -- Table structure for table `updates`
 --
 
-CREATE TABLE IF NOT EXISTS `updates` (
+CREATE TABLE `updates` (
   `id` int(11) NOT NULL,
   `tableName` varchar(128) NOT NULL,
   `operation` varchar(128) NOT NULL,
   `rowId` int(11) NOT NULL,
-  `tStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
+  `tStamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `updates`
@@ -100,7 +102,7 @@ INSERT INTO `updates` (`id`, `tableName`, `operation`, `rowId`, `tStamp`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
   `login` varchar(128) NOT NULL,
@@ -108,17 +110,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(256) NOT NULL,
   `phone` bigint(20) NOT NULL,
   `adress` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `login`, `password`, `email`, `phone`, `adress`) VALUES
-(2, 'Антон Карпушко', 'Habrabro', 'b895a3a12c9ae30234ecfd4bec0347a30640b9e23195a6f5b7c4edab46a31be5', 'habrabro@gmail.com', 89054343348, 'г. Волгоград, ул. Аллея Героев, 4, 88'),
+(2, 'Зелибоба иБусинка', 'Habrabro', 'b895a3a12c9ae30234ecfd4bec0347a30640b9e23195a6f5b7c4edab46a31be5', 'habrabro@gmail.com', 89054343348, 'г. Волгоград, ул. Аллея Героев'),
 (3, 'awdawd', 'awd', 'bc1a9378afb03fbcb3cc53d851b16abc0d996fc6e88c04aaaafb0a662cf3fd08', 'habrabro@gmail.com', 0, 'awd'),
-(4, 'Ненавижу блять Андрея Кузнецова', 'hate', 'ca05ab5a595ca0b36ea5c403bfc6779e33a8f6be8f8376294d7d71436a987d5b', 'fuckyou@gmail.com', 0, ''),
-(5, 'Антон Карпушко', 'admin', '71bbd5ec794791be9df2d33b39bb33f6ddbfa985f3ea31f6b0f27f1e622f5d20', 'habrabro@gmail.com', 89053993134, 'г. Волгоград, ул. Аллея Героев, 4, 88');
+(4, 'Ненавижу блять Людей', 'hate', 'ca05ab5a595ca0b36ea5c403bfc6779e33a8f6be8f8376294d7d71436a987d5b', 'fuckyou@gmail.com', 0, ''),
+(5, 'Зелибоба иКоржик', 'admin', '71bbd5ec794791be9df2d33b39bb33f6ddbfa985f3ea31f6b0f27f1e622f5d20', 'habrabro@gmail.com', 89053993134, 'г. Волгоград, ул. Аллея Героев, 14, 88');
 
 --
 -- Indexes for dumped tables
@@ -156,22 +158,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `updates`
 --
 ALTER TABLE `updates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
