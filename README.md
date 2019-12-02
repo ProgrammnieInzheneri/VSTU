@@ -1,2 +1,1 @@
 # Fundraising
- Leave US alone
