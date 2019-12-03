@@ -3,7 +3,6 @@
 require_once 'bootstrap.php';
 
 $param['title']=$config['site_title'];
-    
 $Query=
     'SELECT
         projects.id,
@@ -32,23 +31,23 @@ $param['content']=getDBTableAsHTML($Query,$p);
 
 if (isAdmin())
 {
-    $formParams['Action']='add_project.php';
-    $formParams['SubmitTitle']='Добавить';
-    $fieldParams = array(
-        "name" => array(
-            "Название" => null
-        ),
-        "description" => array(
-            "Описание" => null
-        ),
-        "requestedFunds" => array(
-            "Требуется средств" => null
-        ),
-        "period" => array(
-            "Период кампании" => null
-        )
-    );
-    $param['content'].=getForm($formParams, $fieldParams);
+    // $formParams['Action']='add_project.php';
+    // $formParams['SubmitTitle']='Добавить';
+    // $fieldParams = array(
+    //     "name" => array(
+    //         "Название" => null
+    //     ),
+    //     "description" => array(
+    //         "Описание" => null
+    //     ),
+    //     "requestedFunds" => array(
+    //         "Требуется средств" => null
+    //     ),
+    //     "period" => array(
+    //         "Период кампании" => null
+    //     )
+    // );
+    // $param['content'].=getForm($formParams, $fieldParams);
 }
 
 template($param);
