@@ -48,37 +48,43 @@ function checkId($data=array())
     return FALSE;
 }
 
-function checkDirectoryTopicData($data=array())
+function checkRegistrationData($data=array())
 {
-    if (empty($data))
-        $data=$_GET;
-    if (isset($data['title'], $data['content'])
-        AND (strlen(trim($data['title']))>0))
-        return TRUE;
-    else
-        return FALSE;
+  if (empty($data))
+    $data=$_POST;
+
+  if (isset(
+    $_POST['name'],
+    $_POST['login'],
+    $_POST['password'],
+    $_POST['email']) &&
+    strlen(trim($data['name'])) > 0 &&
+    strlen(trim($data['login'])) > 0 &&
+    strlen(trim($data['password'])) > 0 &&
+    strlen(trim($data['email'])) > 0)
+  {
+    return TRUE;
+  }
+  else 
+  {
+    return FALSE;
+  }
 }
 
-function checkExercisesData($data=array())
+function checkPaymentData($data = array())
 {
-    if (empty($data))
-        $data=$_GET;
-    if (isset($data['description'], $data['img'], $data['rightAnswer'])
-        AND (strlen(trim($data['description']))>0))
-        return TRUE;
-    else
-        return FALSE;
-}
-
-function checkTopicsData($data=array())
-{
-    if (empty($data))
-        $data=$_GET;
-    if (isset($data['number'], $data['title'])
-        AND (strlen(trim($data['title']))>0))
-        return TRUE;
-    else
-        return FALSE;
+  if (empty($data))
+        $data=$_POST;
+  
+  if (isset($data['projectId'], $data['sum'], $data['paymentMethod']) &&
+    is_numeric($data['sum']))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
 
 function checkProjectData($data=array())

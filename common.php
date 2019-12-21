@@ -336,6 +336,10 @@ function getProjectHtml($id)
                                         <label>Описание проекта</label><br/>
                                         <p>$description</p>
                                     </div>
+
+                                
+                                    <button onlick=\"#\"><a href=\"donate.php?projectId=$id\">Задонатить</a></button>
+
                                 </div>
                                         </div>
                             </div>
@@ -414,7 +418,7 @@ function getUserProjectsPanelHtml($userId)
         FROM projects
         WHERE projects.userId = '.$userId.'
         AND NOT TIMESTAMPDIFF(
-            DAY, CURRENT_TIMESTAMP, DATE_ADD(projects.tStamp,
+            SECOND, CURRENT_TIMESTAMP, DATE_ADD(projects.tStamp,
             INTERVAL projects.period DAY)) < 0';
     $activeProjectsResult = mysqli_query($link, $activeProjectsQuery);
 
@@ -425,7 +429,7 @@ function getUserProjectsPanelHtml($userId)
         FROM projects
         WHERE projects.userId = '.$userId.'
         AND TIMESTAMPDIFF(
-            DAY, CURRENT_TIMESTAMP, DATE_ADD(projects.tStamp,
+            SECOND, CURRENT_TIMESTAMP, DATE_ADD(projects.tStamp,
             INTERVAL projects.period DAY)) < 0';
     $archiveProjectsResult = mysqli_query($link, $archiveProjectsQuery);
 

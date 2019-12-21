@@ -31,11 +31,7 @@ else
     $param['content'] = $c;
     template($param);
 }
-if (isset(
-    $_POST['name'],
-    $_POST['login'],
-    $_POST['password'],
-    $_POST['email']))
+if (checkRegistrationData())
 {
     $q='
         INSERT INTO users (name, login, password, email, phone, adress) VALUES ("'
